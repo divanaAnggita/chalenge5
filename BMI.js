@@ -16,20 +16,17 @@ app.use(cors())
 app.post("/BMI", (req,res) => { 
     let berat = Number(req.body.berat)
     let tinggi = Number(req.body.tinggi)
-    tinggi /=100;
-
-
     let bmi = berat / (tinggi * tinggi)
     let status = bmi
 
-    if(bmi < 18.5){
-        status = "kekurangan berat badan";
-    }else if (bmi >= 18.5 && bmi <= 24.9){
-        status = "berat badan normal";
-    }else if (bmi >= 25 && bmi <= 29.9){
-        status = "kelebihan berat badan";
-    }else{
-        status = "obesitas"
+    if (bmi >= 30.0) {
+        status = "Kegemukan(Obesitas)"
+    } else if (bmi >= 25.0) {
+        status = "Kelebihan Berat Badan"
+    } else if (bmi >= 18.5) {
+        status = "Normal(Ideal)"
+    } else {
+        status = "Kekurangan Berat Badan"
     }
 
     let response = {  
